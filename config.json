@@ -1,0 +1,75 @@
+{
+    "name": "maiAssistant",
+    "nameLocale": {
+        "ru": "AI Переводчик",
+        "fr": "Traducteur IA",
+        "es": "Traductor IA",
+        "pt-BR": "Tradutor IA",
+        "de": "KI-Übersetzer",
+        "si": "AI පරිවර්තකය",
+        "it": "Traduttore AI",
+        "sq-AL": "Përkthyes AI",
+        "sr-Cyrl-RS": "AI Преводилац",
+        "sr-Latn-RS": "AI Prevodilac"
+    },
+    "guid": "asc.{7327FC95-16DA-41D9-9AF2-0E7F449F6800}",
+    "version": "1.1.0",
+
+    "variations": [
+        {
+            "description": "Translate text using local AI powered by Ollama. Fast, private, and secure translations.",
+            "descriptionLocale": {
+                "ru": "Переводите текст с помощью локального ИИ на основе Ollama. Быстрые и безопасные переводы.",
+                "fr": "Traduisez du texte en utilisant l'IA locale alimentée par Ollama. Traductions rapides et sécurisées.",
+                "es": "Traduzca texto usando IA local impulsada por Ollama. Traducciones rápidas y seguras.",
+                "pt-BR": "Traduza texto usando IA local alimentada por Ollama. Traduções rápidas e seguras.",
+                "de": "Übersetzen Sie Text mit lokaler KI von Ollama. Schnelle und sichere Übersetzungen.",
+                "si": "Ollama සමඟ පෙදෙසි AI භාවිතයෙන් පරිවර්තනය කරන්න. වේගවත් සහ ආරක්ෂිත පරිවර්තන.",
+                "it": "Traduci il testo usando l'IA locale alimentata da Ollama. Traduzioni veloci e sicure.",
+                "sq-AL": "Përktheni tekst duke përdorur AI lokale me Ollama. Përkthime të shpejta dhe të sigurta.",
+                "sr-Cyrl-RS": "Преведите текст користећи локални АИ са Олламом. Брзи и сигурни преводи.",
+                "sr-Latn-RS": "Prevedite tekst koristeći lokalni AI sa Ollamom. Brzi i sigurni prevodi."
+            },
+            "url": "index.html",
+
+            "icons": ["resources/img/icon.png", "resources/img/icon@2x.png"],
+            "icons2": [
+                {
+                    "100%": { "normal": "resources/img/icon.png" },
+                    "125%": { "normal": "resources/img/icon@1.25x.png" },
+                    "150%": { "normal": "resources/img/icon@1.5x.png" },
+                    "175%": { "normal": "resources/img/icon@1.75x.png" },
+                    "200%": { "normal": "resources/img/icon@2x.png" }
+                }
+            ],
+            "screens": ["resources/store/screen_1.png"],
+            "isViewer": true,
+            "EditorsSupport": ["word", "cell", "slide", "pdf"],
+            "isVisual": true,
+            "isModal": false,
+            "isInsideMode": true,
+            "initDataType": "text",
+            "isUpdateOleOnResize": false,
+            "initOnSelectionChanged": true,
+            "store": {
+                "background": {
+                    "dark": "#444444"
+                },
+                "screenshots": [
+                    "resources/store/screenshots/screen_2.png"
+                ],
+                "icons": {
+                    "dark": "resources/store/icons"
+                }
+            },
+            "requirements": {
+                "services": [
+                    {
+                        "name": "Ollama",
+                        "description": "Local Ollama instance running on http://localhost:11434"
+                    }
+                ]
+            }
+        }
+    ]
+}

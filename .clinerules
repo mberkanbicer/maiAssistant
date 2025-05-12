@@ -1,0 +1,116 @@
+# Consider these rules
+- initialize memory band and follow your custom instructions whenever you need. also after updating the project, consider updating memory banks.
+- use brave-search mcp, firecrawl mcp and sequential thinking mcp.
+- plan the given task in detail and ask follow up questions if you need, then implement.
+- follow clean code, solid and dry principles.
+- preserve the file and folder structure considering the documentation.
+- generate the installation script (install.sh) for both user and system-wide plugin paths.
+- after installing, run the onlyoffice desktop in debug mode to observe the problems and test the plugin.
+
+# Follow these rules:
+Architecture Rules:
+Follow OnlyOffice plugin architecture guidelines strictly
+Use modular design for separating UI, LLM integration, and document interaction components
+Maintain clear separation between the plugin's core functionality and Ollama.js integration
+Keep plugin config and translations in separate files following established structure
+Follow the MVVM (Model-View-ViewModel) pattern for UI components
+Code Style Rules:
+Follow standard JavaScript/TypeScript conventions
+Use meaningful variable and function names
+Implement proper error handling and logging
+Keep functions small and focused
+Use comments to explain complex logic
+Follow DRY principle for code reuse
+Use consistent indentation and formatting
+Use async/await for asynchronous operations
+Implement proper type checking
+Security Rules:
+Never send sensitive document data to external services
+Validate all user inputs before processing
+Handle errors gracefully without exposing internal details
+Implement proper data sanitization
+Use secure communication with local Ollama instance
+Follow OnlyOffice's security guidelines for plugins
+Handle sensitive data in memory securely
+Development Rules:
+Always test against all supported document types
+Test plugin in both online and offline modes
+Verify plugin works with different LLM models
+Use version control and meaningful commit messages
+Document all API changes
+Use feature branches for development
+Test changes across different Ollama versions
+Follow semantic versioning for releases
+Testing Rules:
+Write unit tests for core functionality
+Test plugin across different document types
+Test with different LLM models
+Verify error handling works correctly
+Test installation scripts thoroughly
+Test performance with large documents
+Implement integration tests
+Test multilingual support
+Documentation Rules:
+Keep README and CHANGELOG up to date
+Document installation requirements clearly
+Provide clear user instructions
+Document supported LLM models
+Maintain API documentation
+Include troubleshooting guides
+Document known limitations
+Update translation files for all supported languages
+Performance Rules:
+Optimize LLM model loading
+Minimize UI blocking operations
+Implement proper request throttling
+Cache responses when appropriate
+Optimize memory usage
+Monitor and optimize plugin load time
+Implement efficient text processing
+Use debouncing for frequent operations
+Compatibility Rules:
+Support all OnlyOffice document types
+Ensure compatibility with different Ollama versions
+Support various operating systems
+Follow OnlyOffice version compatibility guidelines
+Support both user and system-wide installations
+Maintain backward compatibility
+Support offline functionality
+Handle different LLM model formats
+Error Handling Rules:
+Provide clear error messages to users
+Log errors for debugging
+Handle network-related errors gracefully
+Implement proper fallbacks
+Show appropriate UI feedback
+Handle LLM processing errors
+Provide recovery options
+Maintain error state consistency
+Maintenance Rules:
+Keep dependencies updated
+Regularly test with new OnlyOffice versions
+Monitor and fix security vulnerabilities
+Clean up deprecated code
+Maintain consistent versioning
+Update installation scripts as needed
+Monitor plugin performance
+Keep documentation synchronized with code
+
+# Documentation
+OnlyOffice Plugin Getting Started: https://api.onlyoffice.com/docs/plugin-and-macros/get-started/overview/
+OnlyOffice Plugin Installation Document: https://api.onlyoffice.com/docs/plugin-and-macros/tutorials/installing/onlyoffice-desktop-editors/
+
+# If you need, get help from these sample plugins:
+Get and Paste HTML Sample Plugin: https://api.onlyoffice.com/docs/plugin-and-macros/tutorials/samples/get-and-paste-html/
+Get and Paste HTML Sample Plugin (Github): https://github.com/ONLYOFFICE/onlyoffice.github.io/tree/master/sdkjs-plugins/content/html
+
+Translator Plugin: https://api.onlyoffice.com/docs/plugin-and-macros/tutorials/samples/translator/
+Translator Plugin (Gihtub): https://github.com/ONLYOFFICE/onlyoffice.github.io/tree/master/sdkjs-plugins/content/translator
+
+Clippy Plugin: https://api.onlyoffice.com/docs/plugin-and-macros/tutorials/samples/clippy/
+Clippy Plugin (Github): https://github.com/ONLYOFFICE/sdkjs-plugins/tree/master/clippy
+
+Context Menu and Events Plugin: https://api.onlyoffice.com/docs/plugin-and-macros/tutorials/samples/context-menu-and-events/
+
+# Ollama-js library for LLM functionalities
+Ollama JS Github Repository: https://github.com/ollama/ollama-js

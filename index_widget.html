@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" style="width: 100%;height: 100%;">
+<head>
+    <meta charset="UTF-8">
+    <title>Translate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.css">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --border-color: #cccccc;
+            --primary-color: #2196F3;
+            --hover-color: #1976D2;
+            --error-bg: #f8d7da;
+            --error-border: #f5c6cb;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #2d2d2d;
+            --text-color: #e0e0e0;
+            --border-color: #444444;
+            --primary-color: #1976D2;
+            --hover-color: #0d47a1;
+            --error-bg: #5c2a2a;
+            --error-border: #7d3a3a;
+        }
+
+        .body_class {
+            top: 0 !important;
+            left: 0 !important;
+            padding: 5px !important;
+            box-sizing: border-box;
+            overflow: hidden;
+            font-size: 13px !important;
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        .noselect {
+            -khtml-user-select: none;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+        }
+        #translationArea {
+            width: calc(100% - 20px);
+            margin: 10px;
+            min-height: 100px;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        #languageSelect {
+            width: calc(100% - 20px);
+            margin: 10px;
+            padding: 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-size: 14px;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 12px;
+            padding-right: 25px;
+        }
+        [data-theme="dark"] #languageSelect {
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+        }
+        #languageSelect:hover {
+            border-color: var(--primary-color);
+        }
+        #languageSelect:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+        }
+        #translateBtn {
+            margin: 10px;
+            padding: 6px 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        #translateBtn:hover {
+            background-color: var(--hover-color);
+        }
+        #loadingSpinner {
+            display: none;
+            margin: 10px;
+            text-align: center;
+            color: var(--text-color);
+        }
+        #errorMessage {
+            display: none;
+            margin: 10px;
+            padding: 10px;
+            color: var(--text-color);
+            background-color: var(--error-bg);
+            border: 1px solid var(--error-border);
+            border-radius: 4px;
+        }
+        #div_parent {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body style="width:100%;height:100%;margin:0;padding:0;overflow:hidden;">
+    <div id="div_parent" class="body_class">
+        <select id="languageSelect">
+            <option value="English">English</option>
+			<option value="Turkish">Turkish</option>
+            <option value="Spanish">Spanish</option>
+            <option value="French">French</option>
+            <option value="German">German</option>
+            <option value="Italian">Italian</option>
+            <option value="Portuguese">Portuguese</option>
+            <option value="Russian">Russian</option>
+            <option value="Japanese">Japanese</option>
+            <option value="Chinese">Chinese</option>
+        </select>
+        
+        <div id="translationArea"></div>
+        <div id="errorMessage"></div>
+        
+        <button id="translateBtn">Translate</button>
+        <div id="loadingSpinner">Translating...</div>
+    </div>
+
+    <!-- Load scripts at the end for better performance -->
+    <script type="text/javascript" src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins.js"></script>
+    <script type="text/javascript" src="https://onlyoffice.github.io/sdkjs-plugins/v1/plugins-ui.js"></script>
+    <script src="scripts/translate.js"></script>
+    
+    <script>
+        // Global error handler
+        window.onerror = function(message, source, lineno, colno, error) {
+            console.error('Global error:', {message, source, lineno, colno, error});
+            showError('An unexpected error occurred. Please check the console for details.');
+        };
+
+        // Log resource loading
+        console.log('Document ready state:', document.readyState);
+        console.log('jQuery loaded:', typeof jQuery !== 'undefined');
+        console.log('Plugins.js loaded:', typeof window.Asc !== 'undefined');
+
+        function showError(message) {
+            const errorDiv = $('#errorMessage');
+            errorDiv.text(message).show();
+            setTimeout(() => errorDiv.fadeOut(), 5000);
+        }
+
+        $(document).ready(function() {
+            console.log('Document ready event fired');
+            
+            $('#translateBtn').click(async function() {
+                const text = $('#translationArea').text();
+                const targetLang = $('#languageSelect').val();
+                
+                if (!text) {
+                    showError('Please enter text to translate');
+                    return;
+                }
+                
+                $('#loadingSpinner').show();
+                $('#translateBtn').prop('disabled', true);
+                $('#errorMessage').hide();
+                
+                try {
+                    await window.performTranslation(text, targetLang);
+                } catch (error) {
+                    console.error('Translation failed:', error);
+                    showError(error.message || 'Translation failed. Please try again.');
+                } finally {
+                    $('#loadingSpinner').hide();
+                    $('#translateBtn').prop('disabled', false);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
