@@ -32,9 +32,13 @@ ollama pull mistral # Alternative model
 
 ### Basic Translation
 1. Select text in your document
-2. Open Plugins tab → maiAssistant
+2. Open Plugins tab → DocAssist
 3. Choose target language
 4. Click "Translate"
+
+### UI Customization
+- Translation area height: 190px (default)
+- Expanded view height: 260px
 
 ### Advanced Features
 - **Paraphrase**: Rewrite selected text
