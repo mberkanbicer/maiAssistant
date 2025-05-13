@@ -1,6 +1,6 @@
 # maiAssistant - AI Assistant for ONLYOFFICE
 
-![Plugin Screenshot](resources/store/screenshots/screen_1.png)
+![Plugin Screenshot](resources/store/screenshots/screen.gif)
 
 Translate, paraphrase, and enhance text directly in ONLYOFFICE using local AI powered by Ollama.
 

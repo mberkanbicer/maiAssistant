@@ -22,8 +22,8 @@
     var currentAction = 'translate';
     var settings = {
         apiUrl: 'http://localhost:11434',
-        model: 'llama2:latest',
-        temperature: 0.7
+        model: 'llama3.1:latest',
+        temperature: 0.3
     };
 
     // Load settings from localStorage
@@ -150,29 +150,31 @@
             let prompt;
             switch(action) {
                 case 'generate':
-                    prompt = `Generate text based on this prompt: "${text}"`;
+                    prompt = `Generate text based strictly on the following prompt. Do not explain or comment. Just return the generated text only:\n"""${text}"""`;
                     break;
                 case 'paraphrase':
-                    prompt = `Paraphrase the following text while maintaining its meaning: "${text}"`;
+                    prompt = `Paraphrase the following text while keeping its meaning. Only return the paraphrased version. Do not explain or add anything else:\n"""${text}"""`;
                     break;
                 case 'summarize':
-                    prompt = `Provide a concise summary of the following text: "${text}"`;
+                    prompt = `Summarize the text below. Only output the summary. No extra commentary, no title, no notes:\n"""${text}"""`;
                     break;
                 case 'translate':
-                    prompt = `Translate the following text to ${options.targetLang}. Only return the translation: "${text}"`;
+                    prompt = `Translate the following text into ${options.targetLang}. Return only the translated text. Do not include language info or any explanation:\n"""${text}"""`;
                     break;
                 case 'improve':
-                    prompt = `Improve the writing style of the following text while maintaining its meaning: "${text}"`;
+                    prompt = `Improve the style of the text below. Only output the improved version. Do not explain what changed:\n"""${text}"""`;
                     break;
                 case 'extend':
-                    prompt = `Extend and elaborate on the following text while maintaining its style and tone: "${text}"`;
+                    prompt = `Extend the following text, keeping the original tone and style. Only return the extended version. Do not include explanations:\n"""${text}"""`;
                     break;
                 case 'custom':
-                    prompt = `${options.customPrompt} "${text}"`;
+                    prompt = `${options.customPrompt}\nRespond strictly with the result. No extra text or explanation:\n"""${text}"""`;
                     break;
                 default:
                     throw new Error('Unknown action requested');
             }
+
+            let systemPrompt = 'You are a strict responder. Always reply only with the output requested. Never add explanations, apologies, or greetings. Always return plain text only.';
 
             const response = await fetch(`${settings.apiUrl}/api/generate`, {
                 method: 'POST',
@@ -181,6 +183,7 @@
                 },
                 body: JSON.stringify({
                     model: settings.model,
+                    system: systemPrompt,
                     prompt: prompt,
                     stream: false, // Changed to false to get a single response
                     temperature: settings.temperature
@@ -191,9 +194,21 @@
                 throw new Error(`Processing failed: ${response.status} ${response.statusText}`);
             }
 
-            // Parse the JSON response
+            // Parse the JSON response and handle <think> tags
             const data = await response.json();
-            return data.response ? data.response.trim() : '';
+            if (!data.response) return '';
+            
+            const responseText = data.response.trim();
+            const thinkStart = responseText.indexOf('<think>');
+            const thinkEnd = responseText.indexOf('</think>');
+            
+            if (thinkStart !== -1 && thinkEnd !== -1) {
+                // Extract content outside <think> tags
+                const beforeThink = responseText.substring(0, thinkStart);
+                const afterThink = responseText.substring(thinkEnd + 8); // 8 is length of '</think>'
+                return (beforeThink + afterThink).trim();
+            }
+            return responseText;
         } catch (error) {
             console.error('Processing error:', error);
             throw error;
@@ -294,11 +309,11 @@
 
                 // Set translation area height based on action
                 if (translationArea) {
-                    translationArea.classList.remove('height-220', 'height-290');
+                    translationArea.classList.remove('height-190', 'height-260');
                     if (currentAction === 'translate' || currentAction === 'custom') {
-                        translationArea.classList.add('height-220');
+                        translationArea.classList.add('height-190');
                     } else {
-                        translationArea.classList.add('height-290');
+                        translationArea.classList.add('height-260');
                     }
                 }
                 
@@ -351,12 +366,38 @@
                     return;
                 }
 
+                let timer;
                 try {
                     this.disabled = true;
                     this.dataset.processing = 'true';
-                    this.textContent = 'Processing...';
+                    const startTime = Date.now();
+                    const progressElement = document.getElementById('progressStatus');
+                    const buttonText = this.textContent;
                     
+                    // Update progress status
+                    const updateProgress = (message) => {
+                        progressElement.textContent = message;
+                    };
+
+                    // Update button with elapsed time
+                    const updateButton = () => {
+                        const elapsed = Math.floor((Date.now() - startTime) / 1000);
+                        const hours = Math.floor(elapsed / 3600);
+                        const minutes = Math.floor((elapsed % 3600) / 60);
+                        const seconds = elapsed % 60;
+                        this.textContent = `${buttonText} (${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')})`;
+                    };
+
+                    // Start timer
+                    timer = setInterval(updateButton, 1000);
+                    
+                    updateProgress('Starting processing...');
+                    updateButton();
+                    
+                    updateProgress('Sending request to Ollama...');
                     const processedText = await processWithOllama(currentText, currentAction, options);
+                    
+                    updateProgress('Processing response...');
                     if (translationArea) {
                         translationArea.textContent = processedText;
                     }
@@ -365,13 +406,21 @@
                     if (window.Asc.plugin.info.editorType === 'word') {
                         window.Asc.plugin.executeMethod('PasteHtml', [processedText]);
                     }
+                    
+                    // Clear timer and reset button when processing is complete
+                    clearInterval(timer);
+                    this.textContent = currentAction === 'translate' ? 'Translate' : 'Process';
+                    updateProgress('Processing completed successfully');
                 } catch (error) {
                     console.error('Processing failed:', error);
+                    updateProgress('Processing failed: ' + error.message);
                     alert('Processing failed: ' + error.message);
                 } finally {
+                    clearInterval(timer);
                     this.disabled = false;
                     delete this.dataset.processing;
                     this.textContent = currentAction === 'translate' ? 'Translate' : 'Process';
+                    document.getElementById('progressStatus').textContent = 'Ready';
                 }
             };
 

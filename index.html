@@ -154,11 +154,11 @@
             background-color: var(--bg-color);
             color: var(--text-color);
         }
-        #translationArea.height-220 {
-            height: 220px;
+        #translationArea.height-190 {
+            height: 190px;
         }
-        #translationArea.height-290 {
-            height: 290px;
+        #translationArea.height-260 {
+            height: 260px;
             transition: height 0.3s ease;
         }
         #translateButton {
@@ -233,7 +233,7 @@
 <body>
     <div id="mainContainer">
         <div class="tabs">
-            <div class="tab active" data-tab="translator">Translator</div>
+            <div class="tab active" data-tab="translator">DocAssist</div>
             <div class="tab" data-tab="settings">Settings</div>
         </div>
         
@@ -263,6 +263,7 @@
                     <input type="text" id="promptInput" placeholder="Enter your custom prompt here..."/>
                 </div>
                 <div id="translationArea"></div>
+                <div id="progressStatus" style="margin-top: 10px; font-size: 12px; color: var(--text-color); min-height: 18px;"></div>
                 <button id="translateButton">Process Text</button>
             </div>
         </div>
