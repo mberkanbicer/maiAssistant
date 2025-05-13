@@ -18,7 +18,7 @@ Translate, paraphrase, and enhance text directly in ONLYOFFICE using local AI po
 1. Install [Ollama](https://ollama.ai/)
 2. Pull a language model:
 ```bash
-ollama pull llama2  # Recommended base model
+ollama pull llama3.1  # Recommended base model
 ollama pull mistral # Alternative model
 ```
 
@@ -41,6 +41,7 @@ ollama pull mistral # Alternative model
 - Expanded view height: 260px
 
 ### Advanced Features
+- **Translate**: Translate selected text
 - **Paraphrase**: Rewrite selected text
 - **Summarize**: Create concise summary
 - **Improve**: Enhance writing quality
@@ -58,7 +59,7 @@ Access settings via the Settings tab to:
 ### Recommended Models
 | Model | Best For | Size |
 |-------|----------|------|
-| llama2 | General purpose | 7B |
+| llama3.1 | General purpose | 7B |
 | mistral | Multilingual | 7B |
 | codellama | Technical text | 7B |
 
@@ -80,7 +81,7 @@ graph TD
 
 2. **Model not loaded**  
    ```bash
-   ollama pull llama2  # Download the model
+   ollama pull llama3.1  # Download the model
    ```
 
 3. **Connection refused**  
