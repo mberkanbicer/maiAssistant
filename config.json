@@ -12,23 +12,23 @@
         "sr-Cyrl-RS": "AI Преводилац",
         "sr-Latn-RS": "AI Prevodilac"
     },
-    "guid": "asc.{7327FC95-16DA-41D9-9AF2-0E7F449F6800}",
-    "version": "1.1.0",
+    "guid": "asc.{4437D3D4-937A-41BF-903D-AAE45870444B}",
+    "version": "1.0.0",
 
     "variations": [
         {
-            "description": "Translate text using local AI powered by Ollama. Fast, private, and secure translations.",
+            "description": "Bu eklenti, Ollama üzerinden çalışan güçlü bir yapay zeka modeliyle belgelerinizde özetleme, genişletme, çeviri (Türkçe–İngilizce) ve benzeri işlemleri kolayca yapmanızı sağlar. Kullanıcı tanımlı özel prompt desteğiyle her duruma uygun akıllı yanıtlar sunar. Chat tabanlı arayüzü sayesinde metinle etkileşim kurabilir, çıktıları doğrudan belgeye uygulayabilirsiniz.",
             "descriptionLocale": {
-                "ru": "Переводите текст с помощью локального ИИ на основе Ollama. Быстрые и безопасные переводы.",
-                "fr": "Traduisez du texte en utilisant l'IA locale alimentée par Ollama. Traductions rapides et sécurisées.",
-                "es": "Traduzca texto usando IA local impulsada por Ollama. Traducciones rápidas y seguras.",
-                "pt-BR": "Traduza texto usando IA local alimentada por Ollama. Traduções rápidas e seguras.",
-                "de": "Übersetzen Sie Text mit lokaler KI von Ollama. Schnelle und sichere Übersetzungen.",
-                "si": "Ollama සමඟ පෙදෙසි AI භාවිතයෙන් පරිවර්තනය කරන්න. වේගවත් සහ ආරක්ෂිත පරිවර්තන.",
-                "it": "Traduci il testo usando l'IA locale alimentata da Ollama. Traduzioni veloci e sicure.",
-                "sq-AL": "Përktheni tekst duke përdorur AI lokale me Ollama. Përkthime të shpejta dhe të sigurta.",
-                "sr-Cyrl-RS": "Преведите текст користећи локални АИ са Олламом. Брзи и сигурни преводи.",
-                "sr-Latn-RS": "Prevedite tekst koristeći lokalni AI sa Ollamom. Brzi i sigurni prevodi."
+                "ru": "Это расширение позволяет легко выполнять такие задачи, как резюмирование, расширение текста и перевод (турецкий–английский) в ваших документах с помощью мощной модели ИИ на базе Ollama. Поддержка пользовательских запросов обеспечивает интеллектуальные ответы в любых сценариях. Интерфейс чата позволяет взаимодействовать с текстом и напрямую применять результаты в документе.",
+                "fr": "Cette extension vous permet de résumer, d’étendre et de traduire (turc–anglais) vos documents en toute simplicité grâce à un puissant modèle d’IA fonctionnant via Ollama. Elle prend en charge les prompts personnalisés pour fournir des réponses intelligentes adaptées à chaque besoin. Son interface de chat permet d’interagir avec le texte et d’appliquer les résultats directement au document.",
+                "es": "Este complemento permite realizar tareas como resumir, ampliar y traducir (turco–inglés) fácilmente en tus documentos, utilizando un potente modelo de IA basado en Ollama. Soporta prompts personalizados para ofrecer respuestas inteligentes en cualquier situación. Su interfaz de chat permite interactuar con el texto y aplicar los resultados directamente al documento.",
+                "pt-BR": "Este plugin permite resumir, expandir e traduzir (turco–inglês) documentos com facilidade, usando um poderoso modelo de IA baseado no Ollama. Com suporte a prompts personalizados, oferece respostas inteligentes para qualquer situação. A interface de chat permite interagir com o texto e aplicar os resultados diretamente ao documento.",
+                "de": "Dieses Plugin ermöglicht es, Dokumente mithilfe eines leistungsstarken KI-Modells über Ollama einfach zusammenzufassen, zu erweitern und zu übersetzen (Türkisch–Englisch). Mit benutzerdefinierten Prompts liefert es intelligente Antworten für jede Situation. Die Chat-basierte Oberfläche erlaubt eine Interaktion mit dem Text und das direkte Anwenden der Ergebnisse im Dokument.",
+                "si": "මෙම ප්ලගිනයෙන් ඔබට Ollama මත පදනම්ව ක්‍රියාත්මක වන ශක්තිමත් කෘත්‍රිම බුද්ධි ආදර්ශයක් භාවිතයෙන් ලේඛන සාරාංශ කිරීම, දිගුවීම් කිරීම සහ පරිවර්තනය (තුර්කි–ඉංග්‍රීසි) වැනි කාර්යයන් පහසුවෙන් කළ හැක. භාවිතා කරන්නාගේ අභිරුචි prompt සහිතව, ඕනෑම අවස්ථාවකට හොඳ ප්‍රතිචාර ලබා ගත හැක. Chat අතුරුමුහුණත හරහා පාඨය සමඟ අන්තර්ක්‍රියාව සහ ප්‍රතිඵල ලේඛනයට සෘජුවම යෙදවිය හැක.",
+                "it": "Questo plugin consente di riassumere, estendere e tradurre (turco–inglese) i documenti con facilità, grazie a un potente modello di IA basato su Ollama. Supporta prompt personalizzati per fornire risposte intelligenti adatte a ogni situazione. L'interfaccia chat consente di interagire con il testo e applicare i risultati direttamente al documento.",
+                "sq-AL": "Ky shtojcë ju lejon të përmbledhni, zgjeroni dhe përktheni (turqisht–anglisht) dokumentet tuaja me lehtësi duke përdorur një model të fuqishëm të inteligjencës artificiale nëpërmjet Ollama. Mbështetja për prompt-e të personalizuara ofron përgjigje inteligjente për çdo rast. Ndërfaqja e bisedës mundëson ndërveprim me tekstin dhe aplikimin e rezultateve direkt në dokument.",
+                "sr-Cyrl-RS": "Овај додатак омогућава лако сажимање, проширивање и превођење (турски–енглески) докумената уз помоћ снажног модела вештачке интелигенције базираног на Ollama. Подржава прилагођене упите за интелигентне одговоре у било којој ситуацији. Интерфејс за ћаскање омогућава интеракцију са текстом и директну примену резултата у документу.",
+                "sr-Latn-RS": "Ovaj dodatak omogućava lako sažimanje, proširivanje i prevođenje (turski–engleski) dokumenata uz pomoć snažnog modela veštačke inteligencije zasnovanog na Ollama. Podržava prilagođene upite za inteligentne odgovore u svakoj situaciji. Interfejs za čet omogućava interakciju sa tekstom i direktnu primenu rezultata u dokumentu."
             },
             "url": "index.html",
 
@@ -52,16 +52,20 @@
             "isUpdateOleOnResize": false,
             "initOnSelectionChanged": true,
             "store": {
-                "background": {
-                    "dark": "#444444"
-                },
-                "screenshots": [
-                    "resources/store/screenshots/screen_2.png"
-                ],
-                "icons": {
-                    "dark": "resources/store/icons"
-                }
-            },
+				"background": {
+					"light": "#F5F5F5",
+					"dark": "#444444"
+				},
+				"screenshots" : [
+					"resources/store/screenshots/screen_1.png",
+					"resources/store/screenshots/screen_2.png"
+				],
+				"icons" : {
+					"light" : "resources/store/icons",
+					"dark"  : "resources/store/icons"
+				},
+				"categories": ["specAbilities"]
+			},
             "requirements": {
                 "services": [
                     {
